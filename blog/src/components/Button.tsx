@@ -5,7 +5,8 @@ export interface ButtonProps {
     type: 'submit' | 'button',
     bgColor?: string,
     textColor?: string,
-    className?: string
+    className?: string,
+    [key: string]: any,
 }
 
 function Button({

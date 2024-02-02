@@ -6,7 +6,7 @@ export interface SelectProps {
     className: string,
 }
 
-function Select({ options, label, className, ...props }: SelectProps, ref: LegacyRef<HTMLSelectElement>) {
+const Select = forwardRef(function Select({ options, label, className, ...props }: SelectProps, ref: LegacyRef<HTMLSelectElement>) {
     const id = useId();
     return (
         <div className='w-full'>
@@ -32,6 +32,6 @@ function Select({ options, label, className, ...props }: SelectProps, ref: Legac
             </select>
         </div>
     )
-}
+})
 
-export default forwardRef(Select);
+export default Select;

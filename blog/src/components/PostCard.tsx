@@ -21,7 +21,7 @@ function PostCard({ $id, title, featuredImage }: PostCardProps) {
                 </h2>
             </div>
         </Link>
-    )
+    );
 }
 
 export default PostCard

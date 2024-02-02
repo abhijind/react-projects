@@ -7,7 +7,8 @@ import PostCard from './PostCard';
 import Login from './Login';
 import Select from './Select';
 import Input from './Input';
-
+import Button from './Button';
+import Signup from './Signup';
 export {
     Header,
     Footer,
@@ -16,6 +17,8 @@ export {
     LogoutButton,
     PostCard,
     Login,
+    Signup,
     Select,
     Input,
+    Button,
 }
