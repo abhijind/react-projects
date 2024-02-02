@@ -9,6 +9,9 @@ import Select from './Select';
 import Input from './Input';
 import Button from './Button';
 import Signup from './Signup';
+import AuthLayout from './AuthLayout';
+import TextEditor from './TextEditor';
+
 export {
     Header,
     Footer,
@@ -21,4 +24,6 @@ export {
     Select,
     Input,
     Button,
+    AuthLayout,
+    TextEditor
 }

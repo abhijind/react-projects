@@ -1,3 +1,4 @@
-import { Error } from "./Error";
+import { Post } from "./Post";
+import { User } from "./User";
 
-export type { Error };
+export type { Post, User };

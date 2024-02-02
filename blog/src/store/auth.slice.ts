@@ -1,4 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { User } from "../models";
+
+export interface IAuthState {
+    status: boolean;
+    userData: User;
+}
 
 const initialState = {
     status: false,
