@@ -1,5 +1,5 @@
 import { FieldValues, useForm } from "react-hook-form"
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Post, User } from "../models";
 import bucketService from "../appwrite/bucket.service";
@@ -18,10 +18,10 @@ function PostForm({ post }: PostFormProps) {
             slug: post.slug ?? '',
             content: post?.content ?? '',
             status: post.status ?? 'active',
+            image: undefined
         }
     });
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     const userData = useSelector((state: { user: { userData: User } }) => state.user.userData);
 
 

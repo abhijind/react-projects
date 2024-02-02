@@ -3,7 +3,7 @@ import { Control, Controller } from 'react-hook-form';
 
 export interface TextEditorProps {
     name: string;
-    control: Control;
+    control: Control<any>;
     label?: string;
     defaultValue: string;
 }
