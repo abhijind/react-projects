@@ -1,28 +1,28 @@
 import { FieldValues, useForm } from "react-hook-form"
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Post, User } from "../models";
+import { IPost, User } from "../models";
 import bucketService from "../appwrite/bucket.service";
 import service from "../appwrite/config.service";
 import { useCallback, useEffect } from "react";
 import { Button, Input, Select, TextEditor } from ".";
 
 export interface PostFormProps {
-    post: Post
+    post?: IPost
 }
 
 function PostForm({ post }: PostFormProps) {
     const { register, handleSubmit, watch, control, getValues, setValue } = useForm({
         defaultValues: {
-            title: post.title ?? '',
-            slug: post.slug ?? '',
+            title: post?.title ?? '',
+            slug: post?.slug ?? '',
             content: post?.content ?? '',
-            status: post.status ?? 'active',
+            status: post?.status ?? 'active',
             image: undefined
         }
     });
     const navigate = useNavigate();
-    const userData = useSelector((state: { user: { userData: User } }) => state.user.userData);
+    const userData = useSelector((state: { auth: { userData: User } }) => state.auth.userData);
 
 
     const submit = async (data: FieldValues) => {
@@ -31,14 +31,14 @@ function PostForm({ post }: PostFormProps) {
 
         if (post) {
             if (file) {
-                bucketService.deleteFile(post.featuredImage);
+                bucketService.deleteFile(post?.featuredImage);
             }
 
             dbPost = await service.updatePost(
-                post.slug, {
+                post?.slug, {
                     ...data,
                     featuredImage: file ? (await file).$id : undefined,
-                } as Post
+                } as IPost
             );
 
         } else {
@@ -47,13 +47,13 @@ function PostForm({ post }: PostFormProps) {
                 dbPost = await service.createPost({
                     ...data,
                     userId: userData.$id
-                } as Post)
+                } as IPost)
 
             }
         }
 
         if (dbPost) {
-            navigate(`/post/${dbPost.$id}`);
+            navigate(`/post/${dbPost?.$id}`);
         }
     }
 
@@ -62,7 +62,6 @@ function PostForm({ post }: PostFormProps) {
             return value
                 .trim()
                 .toLowerCase()
-                .replace(/^[a-zA-Z\d\s]+/g, '-')
                 .replace(/\s/g, '-');
         return '';
     }, []);
@@ -98,7 +97,7 @@ function PostForm({ post }: PostFormProps) {
                         setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
                     }}
                 />
-                <TextEditor label="Content :" name="content" control={control} defaultValue={getValues("content")} />
+                <TextEditor name="content" control={control} defaultValue={getValues("content")} />
             </div>
             <div className="w-1/3 px-2">
                 <Input
@@ -111,8 +110,8 @@ function PostForm({ post }: PostFormProps) {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={String(bucketService.getFilePreview(post.featuredImage))}
-                            alt={post.title}
+                            src={String(bucketService.getFilePreview(post?.featuredImage))}
+                            alt={post?.title}
                             className="rounded-lg"
                         />
                     </div>

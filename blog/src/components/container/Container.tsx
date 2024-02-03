@@ -1,8 +1,8 @@
-import { ReactElement } from "react";
+import {  ReactNode } from "react";
 
-function Container({ children }: {children: ReactElement}) {
+function Container({ children }: { children: ReactNode }) {
     return (
-        <div className="w-full max-w-7-xl mx-auto px-4">
+        <div className="w-full h-full max-w-7-xl mx-auto px-4">
             { children}
         </div>
     )

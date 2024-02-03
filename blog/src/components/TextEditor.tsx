@@ -1,5 +1,6 @@
 import { Editor } from '@tinymce/tinymce-react';
 import { Control, Controller } from 'react-hook-form';
+import config from '../config/config';
 
 export interface TextEditorProps {
     name: string;
@@ -17,6 +18,7 @@ function TextEditor({ name, control, label, defaultValue = '' }: TextEditorProps
                 control={control}
                 render={({ field: { onChange } }) => (
                     <Editor
+                        apiKey={config.tinyMceApiKey}
                         initialValue={defaultValue}
                         init={{
                             height: 500,

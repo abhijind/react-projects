@@ -1,20 +1,19 @@
-import { ReactElement, useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-export default function AuthLayout({ children, authentication = true }: { children: ReactElement, authentication: boolean }) {
+export default function AuthLayout({ children, isAuthRequired = true }: { children: ReactNode, isAuthRequired: boolean }) {
     const navigate = useNavigate();
     const [loader, setLoader] = useState(true);
-    const authStatus = useSelector((state: { auth: { status: boolean } }) => state.auth.status);
+    const authStatus = useSelector((state: { auth: { status: boolean } }) => state?.auth?.status);
 
     useEffect(() => {
-
-        if (authentication && authStatus !== authentication) {
+        if (isAuthRequired && authStatus !== isAuthRequired) {
             navigate('/login');
-        } else if (!authentication && authStatus !== authentication) {
+        } else if (!isAuthRequired && authStatus !== isAuthRequired) {
             navigate('/');
         }
         setLoader(false);
-    }, [authStatus, navigate, authentication]);
+    }, [authStatus, navigate, isAuthRequired]);
     return loader ? <h1>Loading...</h1> : <>{children}</>
 }

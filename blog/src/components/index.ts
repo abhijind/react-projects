@@ -11,6 +11,7 @@ import Button from './Button';
 import Signup from './Signup';
 import AuthLayout from './AuthLayout';
 import TextEditor from './TextEditor';
+import PostForm from './PostForm';
 
 export {
     Header,
@@ -25,5 +26,6 @@ export {
     Input,
     Button,
     AuthLayout,
-    TextEditor
+    TextEditor,
+    PostForm
 }

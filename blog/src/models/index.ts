@@ -1,4 +1,4 @@
-import { Post } from "./Post";
+import { IPost } from "./Post";
 import { User } from "./User";
 
-export type { Post, User };
+export type { IPost, User };

@@ -1,6 +1,6 @@
 import { Client, Databases, Query } from "appwrite";
 import config from "../config/config";
-import { Post } from "../models";
+import { IPost } from "../models";
 
 export class Service {
     private client = new Client();
@@ -14,7 +14,7 @@ export class Service {
         this.databases = new Databases(this.client);
     }
 
-    async createPost(post: Post) {
+    async createPost(post: IPost) {
         return await this.databases.createDocument(
             config.appwriteDatabaseId,
             config.appwriteCollectionId,
@@ -28,7 +28,7 @@ export class Service {
         );
     }
 
-    async updatePost(postId: string, post: Post) {
+    async updatePost(postId: string, post: IPost) {
         return await this.databases.updateDocument(
             config.appwriteDatabaseId,
             config.appwriteCollectionId,
